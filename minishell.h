@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmnasfa <hmnasfa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aboukhmi <aboukhmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 17:52:42 by hmnasfa           #+#    #+#             */
-/*   Updated: 2025/03/03 01:02:56 by hmnasfa          ###   ########.fr       */
+/*   Updated: 2025/03/06 23:59:28 by aboukhmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ char	*expand_variables(char	*str, t_env *env);
 t_cmd	*split_by_pipe(t_token *tokens);
 void	remove_pipe_node(t_cmd	*cmd_list);
 char	*check_unclosed_quotes(char *input);
-int		check_two_pipes(t_token *tokens);
+int check_two_pipes(char *input);
 int		check_redirection_err(t_token *tokens);
-int		check_pipe_position(t_token *tokens, char **input);
+char *handle_pipe_end(char *input);
 
 void	free_token(t_token *tokens);
 

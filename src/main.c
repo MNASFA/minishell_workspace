@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmnasfa <hmnasfa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aboukhmi <aboukhmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 18:04:14 by hmnasfa           #+#    #+#             */
-/*   Updated: 2025/03/03 15:10:02 by hmnasfa          ###   ########.fr       */
+/*   Updated: 2025/03/07 00:00:50 by aboukhmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,18 @@ int main(int ac, char **av, char **envp)
 	while (1)
 	{
 		input = readline("minishell$ ");
+		if (!check_two_pipes(input))
+			{
+				free(input);
+				write(2, "tnakkkkkt", 10);
+				return(1);
+			}
+		input = handle_pipe_end(input);
 		if (!input)
 		{
 			printf("exit\n");
 			break;
 		}
-		
 		if (*input)
 			add_history(input);
 
@@ -61,12 +67,12 @@ int main(int ac, char **av, char **envp)
         input = checked_input;
 		
 		tokens = tokenizer(input);
-		int pipe_status = check_pipe_position(tokens, &input);
-		if (check_two_pipes(tokens) || check_redirection_err(tokens) || pipe_status == 1)
-		{
-			free_token(tokens);
-			return (1);
-		}
+		// int pipe_status = check_pipe_postion(tokens, &input);
+		// if (check_two_pipes(tokens) || check_redirection_err(tokens) || pipe_status == 1)
+		// {
+		// 	free_token(tokens);
+		// 	return (1);
+		// }
 		
 		current = tokens;
 		while (current)
